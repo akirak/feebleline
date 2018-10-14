@@ -101,6 +101,10 @@
   "Set this if you want to show line number and column number in the modeline proxy."
   :group 'feebleline)
 
+(defcustom feebleline-time-format "[%H:%M:%S]"
+  "Time format when `feebleline-show-time' is turned on."
+  :group 'feebleline)
+
 (defun feebleline-previous-buffer-name ()
   "Get name of previous buffer."
   (buffer-name (other-buffer (current-buffer) 1)))
@@ -143,7 +147,7 @@ sent to `add-text-properties'.")
 (setq
  feebleline-mode-line-text
  '(
-   ("%s" ((if feebleline-show-time (format-time-string "[%H:%M:%S] ") ""))
+   ("%s" ((if feebleline-show-time (format-time-string feebleline-time-format) ""))
     (face feebleline-time-face))
    ("%s"
     ((if feebleline-show-linenum
